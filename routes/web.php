@@ -24,3 +24,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'ReviewController@index')->name('index');
+
+
+	Route::group(['middleware'=>'auth'],function(){
+		
+Route::get('/review','ReviewController@create')->name('create');
+	});

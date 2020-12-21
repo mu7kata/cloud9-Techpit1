@@ -18,12 +18,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
+     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+   
     @yield('css')
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+          <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                                     <img class='navbar-logo' src="{{ asset('images/logo.png') }}">
@@ -42,6 +45,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        
+                        <li class="nav-item">
+            <a href="{{ route('create') }}" class='nav-link'>レビューを書く</a>
+        </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
