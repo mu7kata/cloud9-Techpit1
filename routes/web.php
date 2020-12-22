@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'ReviewController@index')->name('index');
 
+Route::get('/show/{id}', 'ReviewController@show')->name('show');
 
 Route::group(['middleware'=>'auth'],function(){
 		
