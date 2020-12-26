@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h1 class='pagetitle'>レビュー投稿ページ</h1>
+<h1 class='pagetitle'>Reviewー投稿ページ</h1>
 @if($errors->any())
 <div class="alert alert-danger">
 	<ul>
