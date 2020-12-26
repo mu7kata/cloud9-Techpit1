@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #222831;
+    background-color: #9e0b40;
     color: #fff;
 }
 .navbar-logo {
@@ -10,7 +10,7 @@
     color: #fff;
 }
 .main {
-    background-color: #393e46;
+    background: linear-gradient(70deg, #f9f9f9, #f7dce1);
     min-height: 85vh;
     padding: 30px 5%;
 }
