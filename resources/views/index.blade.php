@@ -20,9 +20,9 @@
                 <h3 class="h3 book-title">{{$review->title}}</h3>
                 <p class='description'>
                     {{$review->body}}
-                    レビュー本文
+                    Review本文
                 </p>
-                <a href="{{route('show',['id'=>$review->id])}}"class='btn btn-secondary detail-btn'>詳細を読む</a>
+                <a href="{{route('show',['id'=>$review->id])}}"class='btn btn-secondary detail-btn'>詳細</a>
             </div>
         </div>
     </div>
