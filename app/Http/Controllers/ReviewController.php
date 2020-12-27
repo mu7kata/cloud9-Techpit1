@@ -7,11 +7,16 @@ use App\Review;
 
 class ReviewController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+      $keyword=$request->search;
+    if(isset($keyword)){
+        $reviews=Review::where('title', $keyword)->orderBy('created_at', 'DESC')->paginate(6);
         
+        }else
         $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
-       
         return view('index', compact('reviews'));
+        
+       
     }
     
     public function create(){
@@ -45,5 +50,6 @@ class ReviewController extends Controller
 
     return view('show', compact('review'));
 }
+
 }
 
