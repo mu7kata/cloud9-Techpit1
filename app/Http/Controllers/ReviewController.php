@@ -10,7 +10,11 @@ class ReviewController extends Controller
     public function index(Request $request){
       $keyword=$request->search;
     if(isset($keyword)){
-        $reviews=Review::where('title', $keyword)->orderBy('created_at', 'DESC')->paginate(6);
+        $reviews=Review::where(
+            function($query) use($keyword){
+                 $query->where('title', $keyword)
+                ->orwhere('group_name',$keyword);
+            })->orderBy('created_at', 'DESC')->paginate(6);
         
         }else
         $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
