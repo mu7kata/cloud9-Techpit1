@@ -30,9 +30,9 @@ class ReviewController extends Controller
     ]);
         if($request->hasfile('image')){
          $request->file('image')->store('/public/images');
-         $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body'], 'image' => $request->file('image')->hashName()];
+         $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'],'body' => $post['body'], 'image' => $request->file('image')->hashName()];
         }else{
-            $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
+            $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'], 'body' => $post['body']];
         }
         
         Review::insert($data);

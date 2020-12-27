@@ -6,15 +6,18 @@
     margin-bottom: 20px;
     object-fit: cover;
 }
+
 .book-title {
-    height: 3.5em;
+    height: 1em;
     overflow: hidden;
+    text-align: center;
 }
 .description {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 4em;
 }
 .detail-btn {
     display: block;
