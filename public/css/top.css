@@ -27,3 +27,8 @@
 .pagination {
     justify-content: center;
 }
+
+.search-wrapper{
+    text-align:right;
+    margin-bottom:1.5em;
+}

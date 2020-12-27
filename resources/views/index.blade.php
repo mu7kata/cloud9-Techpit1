@@ -6,6 +6,13 @@
 
 @section('content')
 
+<div class="search-wrapper">
+    <form action="" method="post">
+        <input  type="search" name="search" placeholder="キーワードを入力してください">
+        <input type="submit" name="submit" value="検索">
+    </form>
+    
+</div>
 <div class="row justify-content-center">
     @foreach($reviews as $review)
     <div class="col-md-4">
