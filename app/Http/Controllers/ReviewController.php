@@ -15,12 +15,9 @@ class ReviewController extends Controller
                  $query->where('title', $keyword)
                 ->orwhere('group_name',$keyword);
             })->orderBy('created_at', 'DESC')->paginate(6);
-        
         }else
         $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
-        return view('index', compact('reviews'));
-        
-       
+        return view('index', compact('reviews','keyword'));
     }
     
     public function create(){
