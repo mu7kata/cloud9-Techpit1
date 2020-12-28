@@ -32,7 +32,7 @@
               </div>
               <div class="form-group">
                 <label for="file1">画像</label>
-                <input type="file" id="file1" name='image' class="form-control-file" value="{{old('image')}}" >
+                <input type="file" id="file1" name='image' class="form-control-file" >
               </div>
               <input type='submit' class='btn btn-primary' value='レビューを登録'>
             </div>

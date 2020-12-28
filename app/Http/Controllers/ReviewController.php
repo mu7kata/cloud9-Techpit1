@@ -50,15 +50,35 @@ class ReviewController extends Controller
         }
         
         Review::insert($data);
-
         return redirect('/')->with('flash_message', '投稿が完了しました');
     }
    public function show($id)
 {
     $review = Review::where('id', $id)->where('status', 1)->first();
-
     return view('show', compact('review'));
 }
+
+public function edit($id){
+         $review = Review::where('id', $id)->where('status', 1)->first();
+         return view('edit', compact('review'));
+}
+
+ public function update(Request $request){
+         $post = $request->all();
+         $validatedData = $request->validate([
+        'title' => 'required|max:255',
+        'body' => 'required',
+        'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+        if($request->hasfile('image')){
+         $request->file('image')->store('/public/images');
+         $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'], 'body' => $post['body'],'image' => $request->file('image')->hashName()];
+        }else{
+            $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'], 'body' => $post['body']];
+        }
+        Review::insert($data);
+        return redirect('/')->with('flash_message', '編集が完了しました');
+    }
 
 }
 

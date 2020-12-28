@@ -2,10 +2,12 @@ review-main {
     width: 70%;
 }
 .review-image {
-    width: 30%;
+    width:41%;
 }
 .review-image img {
     max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 .btn-back {
     width: 10em;

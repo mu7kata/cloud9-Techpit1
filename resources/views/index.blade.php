@@ -34,8 +34,10 @@
                 <h3 class="h3 book-title">{{$review->title}}</h3>
                 <p class='description'>所属：{{$review->group_name}}</p>
                 <a href="{{route('show',['id'=>$review->id])}}"class='btn btn-secondary detail-btn'>詳細</a>
+              <a href="{{route('edit',['id'=>$review->id])}}">編集</a>
             </div>
         </div>
+        
     </div>
      @endforeach
 </div>
