@@ -9,18 +9,15 @@
 <div class="search-wrapper">
     <form action="" method="get">
          @csrf
-        <input  class="keyword" type="search" name="search" placeholder="キーワードを入力してください" value={{$keyword}}>
-          <input type="submit" name="submit" value="検索">
-    </form>
-     <form action="" method="post">
-          @csrf
-    <select class="group" name="group">
+         
+        <input  class="keyword" type="search" name="search" placeholder="キーワードで検索" value={{$keyword}}>
+         <select class="group" name="group" >
             <option>グループ名で検索</option>
             <option>ももいろクローバーZ</option>
              <option>TEAMSHACHI</option>
               <input type="submit" name="submit" value="検索">
         </select>
-        </form>
+    </form>
 </div>
 
 <div class="row justify-content-center">
