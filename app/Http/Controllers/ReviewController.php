@@ -8,16 +8,33 @@ use App\Review;
 class ReviewController extends Controller
 {
     public function index(Request $request){
+        
       $keyword=$request->search;
     if(isset($keyword)){
         $reviews=Review::where(
             function($query) use($keyword){
-                 $query->where('title', $keyword)
+                $query->where('title', $keyword)
                 ->orwhere('group_name',$keyword);
             })->orderBy('created_at', 'DESC')->paginate(6);
         }else
         $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
+
         return view('index', compact('reviews','keyword'));
+    }
+    
+    public function groupsearch(Request $request){
+         $keyword=$request->group;
+         if(isset($keyword)){
+        $reviews=Review::where(
+            function($query) use($keyword){
+                $query->where('title', $keyword)
+                ->orwhere('group_name',$keyword);
+            })->orderBy('created_at', 'DESC')->paginate(6);
+           
+        }else
+        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
+        return view('index', compact('reviews','keyword'));
+         
     }
     
     public function create(){

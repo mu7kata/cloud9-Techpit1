@@ -32,3 +32,17 @@
     text-align:right;
     margin-bottom:1.5em;
 }
+
+.keyword{
+  height: 1.8em;
+    width: 11em;
+}
+.group{
+    height: 1.8em;
+    width: 11em;
+margin-right:0.3em;
+}
+.input type[submit]{
+     height: 1.8em;
+    width: 11em;
+}
