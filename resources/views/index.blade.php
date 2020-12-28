@@ -35,6 +35,7 @@
                 <p class='description'>所属：{{$review->group_name}}</p>
                 <a href="{{route('show',['id'=>$review->id])}}"class='btn btn-secondary detail-btn'>詳細</a>
               <a href="{{route('edit',['id'=>$review->id])}}">編集</a>
+     <a href="{{route('delete',['id'=>$review->id])}}">削除</a>
             </div>
         </div>
         

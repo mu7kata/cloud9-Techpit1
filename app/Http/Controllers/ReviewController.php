@@ -76,9 +76,14 @@ public function edit($id){
         }else{
             $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'], 'body' => $post['body']];
         }
-        Review::insert($data);
+    Review::where('id',$request->id)->update($data);
         return redirect('/')->with('flash_message', '編集が完了しました');
     }
+
+public function delete($id){
+    Review::where('id',$id)->where('status',1)->delete();
+    return redirect('/')->with('flash_message','削除が完了しました');
+}
 
 }
 
