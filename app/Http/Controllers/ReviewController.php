@@ -8,7 +8,7 @@ use App\Review;
 class ReviewController extends Controller
 {
     public function index(Request $request){
-     
+      $groupnames =Review::select('group_name')->GROUPBY('group_name')->get();
     if(isset($request->group) && $request->group !="グループ名で検索"){
       $keyword=$request->group;
     }else{
@@ -23,9 +23,10 @@ class ReviewController extends Controller
             })->orderBy('created_at', 'DESC')->paginate(6);
         }else
         $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
-
-        return view('index', compact('reviews','keyword'));
+        
+        return view('index', compact('reviews','keyword','groupnames'));
     }
+    
 
     
     public function create(){

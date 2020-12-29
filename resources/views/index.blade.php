@@ -11,10 +11,13 @@
          @csrf
          
         <input  class="keyword" type="search" name="search" placeholder="キーワードで検索" value={{$keyword}}>
-         <select class="group" name="group" >
+         <select class="group" name="group"> 
+              
             <option>グループ名で検索</option>
-            <option>ももいろクローバーZ</option>
-             <option>TEAMSHACHI</option>
+             @foreach ($groupnames as $groupname)
+            <option>{{ $groupname->group_name}}</option>
+             @endforeach
+             
               <input type="submit" name="submit" value="検索">
         </select>
     </form>
