@@ -56,6 +56,7 @@ class ReviewController extends Controller
 {
     $review = Review::where('id', $id)->where('status', 1)->first();
     return view('show', compact('review'));
+ 
 }
 
 public function edit($id){
@@ -63,7 +64,7 @@ public function edit($id){
          return view('edit', compact('review'));
 }
 
- public function update(Request $request){
+public function update(Request $request){
          $post = $request->all();
          $validatedData = $request->validate([
         'title' => 'required|max:255',
@@ -75,8 +76,7 @@ public function edit($id){
          $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'], 'body' => $post['body'],'image' => $request->file('image')->hashName()];
         }else{
             $data = ['user_id' => \Auth::id(), 'title' => $post['title'],'group_name' => $post['group'], 'body' => $post['body']];
-        }
-    Review::where('id',$request->id)->update($data);
+        }Review::where('id',$request->id)->update($data);
         return redirect('/')->with('flash_message', '編集が完了しました');
     }
 

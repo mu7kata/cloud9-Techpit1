@@ -32,7 +32,7 @@
                 <label for="file1">画像</label>
                 <input type="file" id="file1" name='image' class="form-control-file" >
               </div>
-        
+         <input type="hidden" name="id" value={{$review->id}}>
        <input type=submit value="再登録">
         </form> 
         </section> 
