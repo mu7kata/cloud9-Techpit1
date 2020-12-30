@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Review;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class ReviewController extends Controller
 {
     public function index(Request $request){
+      //プルダウン用のデータを取得
       $groupnames =Review::select('group_name')->GROUPBY('group_name')->get();
+     
+     //ユーザー名を取得するために結合 
+    $test= DB::table('reviews')->where('reviews.user_id',2)->join('users','users.id','=','reviews.user_id')->get();
+    $test2= Review::select("name")->join('users','reviews.user_id','=','reviews.user_id')->get();
+    
+
+     //検索データ取得
     if(isset($request->group) && $request->group !="グループ名で検索"){
       $keyword=$request->group;
     }else{
@@ -23,10 +33,10 @@ class ReviewController extends Controller
             })->orderBy('created_at', 'DESC')->paginate(6);
         }else
         $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
-        
-        return view('index', compact('reviews','keyword','groupnames'));
+        $user_data =DB::table('users')->select('name')->where('id',2)->get();
+         
+        return view('index', compact('reviews','keyword','groupnames','user_data','test'));
     }
-    
 
     
     public function create(){
