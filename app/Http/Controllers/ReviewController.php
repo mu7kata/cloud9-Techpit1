@@ -16,7 +16,8 @@ class ReviewController extends Controller
      //ユーザー名を取得するために結合 
     $test= DB::table('reviews')->where('reviews.user_id',2)->join('users','users.id','=','reviews.user_id')->get();
     $test2= Review::select("name")->join('users','reviews.user_id','=','reviews.user_id')->get();
-    
+    $test3='りんご';
+    \Debugbar::info('$test3='.$test3); 
 
      //検索データ取得
     if(isset($request->group) && $request->group !="グループ名で検索"){
