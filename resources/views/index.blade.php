@@ -24,15 +24,14 @@
 </div>
 
 <div class="row justify-content-center">
-    
-    @foreach($test as $tes)
-      <p class='description'>投稿者 {{$tes->name}}</p>
-      @endforeach
+
     
     @foreach($reviews as $review)
     <div class="col-md-4">
         <div class="card mb50">
-                  
+        
+                     <p class='description'>投稿者 {{$review->name}}</p>
+   
             <div class="card-body">
                  @if(!empty($review->image))
               <div class='image-wrapper'><img class='book-image' src="{{ asset('storage/images/'.$review->image) }}"></div>
@@ -42,12 +41,12 @@
             
                 <h3 class="h3 book-title">{{$review->title}}</h3>
                 <p class='description'>所属：{{$review->group_name}}</p>
+                     
                 <a href="{{route('show',['id'=>$review->id])}}"class='btn btn-secondary detail-btn'>詳細</a>
               <a href="{{route('edit',['id'=>$review->id])}}">編集</a>
      <a href="{{route('delete',['id'=>$review->id])}}">削除</a>
             </div>
         </div>
-        
     </div>
      @endforeach
 </div>

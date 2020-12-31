@@ -15,9 +15,8 @@ class ReviewController extends Controller
      
      //ユーザー名を取得するために結合 
     $test= DB::table('reviews')->where('reviews.user_id',2)->join('users','users.id','=','reviews.user_id')->get();
-    $test2= Review::select("name")->join('users','reviews.user_id','=','reviews.user_id')->get();
-    $test3='りんご';
-    \Debugbar::info('$test3='.$test3); 
+    
+    // \Debugbar::info('$test3='.$test2); 
 
      //検索データ取得
     if(isset($request->group) && $request->group !="グループ名で検索"){
@@ -27,16 +26,15 @@ class ReviewController extends Controller
     }
       
     if(isset($keyword)){
-        $reviews=Review::where(
-            function($query) use($keyword){
-                $query->where('title', $keyword)
-                ->orwhere('group_name',$keyword);
-            })->orderBy('created_at', 'DESC')->paginate(6);
-        }else
-        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(6);
-        $user_data =DB::table('users')->select('name')->where('id',2)->get();
-         
-        return view('index', compact('reviews','keyword','groupnames','user_data','test'));
+        $reviews=Review::join('users','users.id','=','reviews.user_id')->where(
+            function($query) use($keyword){$query->where('title', $keyword)->orwhere('group_name',$keyword);})
+            ->orderBy('reviews.created_at', 'DESC')->paginate(6);
+        }else{
+        $reviews =Review::join('users','users.id','=','reviews.user_id')->where('status', 1)->orderBy('reviews.created_at', 'DESC')->paginate(6);
+        $review_user=$reviews->pluck('user_id');
+        }
+        
+        return view('index', compact('reviews','keyword','groupnames'));
     }
 
     
