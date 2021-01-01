@@ -30,10 +30,13 @@ class ReviewController extends Controller
             function($query) use($keyword){$query->where('title', $keyword)->orwhere('group_name',$keyword);})
             ->orderBy('reviews.created_at', 'DESC')->paginate(6);
         }else{
-        $reviews =Review::join('users','users.id','=','reviews.user_id')->where('status', 1)->orderBy('reviews.created_at', 'DESC')->paginate(6);
+        $reviews =Review::join('users','users.id','=','reviews.user_id')->where('status', 1)->orderBy('reviews.created_at', 'DESC')
+        ->select('users.id as u_id','reviews.id','user_id','title','group_name','body','image','status' ,'reviews.created_at' ,'name')
+        ->paginate(6);
         $review_user=$reviews->pluck('user_id');
         }
         
+    \Debugbar::info($reviews);
         return view('index', compact('reviews','keyword','groupnames'));
     }
 
